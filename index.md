@@ -3,6 +3,16 @@ title: index title
 layout: layout0
 ---
 
+#TOC
+
+Does not seem to be currently possible server side.
+
+So lets just JS it up:
+
+<ul data-toc></ul>
+
+#Intro
+
 The Liquid template engine is used. It is meant to be client facing safe and fast, and therefore limited by design.
 
 What Jekyll does is to add many variables automatically to the templates and then possibly compile the result via some markdown format to make Liquid into a blog / website.
@@ -141,11 +151,3 @@ x^2
 $$
 
 $$x^2$$
-
-#TOC
-
-Does not seem to be currently possible server side.
-
-So lets just JS it up:
-
-<div id="toc"></div>
