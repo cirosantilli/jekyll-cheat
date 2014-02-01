@@ -25,7 +25,7 @@ Markup is decided based on file extension.
 
 You *must* use the triple slash metadata header for markdown to be interpreted on the index file.
 
-The default markdown engine is Redcarpet as of 1.4.3.
+The default markdown engine was Maruku, but the project was discontinued. Kramdown is recommended as replacement for Maruku.
 
 #Pages
 
