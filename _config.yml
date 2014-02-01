@@ -19,7 +19,10 @@ relative_permalinks: true
 permalink:     date
 paginate_path: 'page:num'
 
-markdown:      maruku
+# Markdown engine to use:
+#markdown:      maruku
+markdown:      kramdown
+
 markdown_ext:  markdown,mkd,mkdn,md
 textile_ext:   textile
 

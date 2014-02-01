@@ -66,6 +66,9 @@ Data in `_config.yml` (not reparsed by `--watch`, must rebuild):
 
 #Image
 
+TODO
+
+{:style="width:100px; height:100px;"}
 ![image]({{ site.url }}/assets/png.png)
 
 #Tags
@@ -119,3 +122,30 @@ These are extra filters that Jekyll adds to Liquid:
 `site.time` = {{ site.time }}
 
 `site.time | date_to_string` = {{ site.time | date_to_string }}
+
+#Math
+
+The best HTML possibility as of now seems to be to:
+
+- `markdown: kramdown` on the `_config.yml`
+- MathJax javascript on the header
+
+We am yet to find a server side option (MathML or images), specially one that will run on Github Pages.
+
+Inline $$x^2$$ math.
+
+Block:
+
+$$
+x^2
+$$
+
+$$x^2$$
+
+#TOC
+
+Does not seem to be currently possible server side.
+
+So lets just JS it up:
+
+<div id="toc"></div>
