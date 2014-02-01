@@ -14,6 +14,6 @@ Live at Github Pages (excluding non safe settings such as plugins): http://ciros
 
 This is a list of features which I think are missing and will consider implementing for the sake of elearning:
 
-- TOC
-- math / equations.
+- server side TOC
+- server side math / equations.
 - export each page separately to PDF.
