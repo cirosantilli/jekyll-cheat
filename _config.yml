@@ -30,10 +30,14 @@ excerpt_separator: "\n\n"
 
 # If on, no plugins. Github uses on.
 #safe:        false
+#
 #host:        0.0.0.0
 #port:        4000
+
+# *Don't* ever set those manually or they will break Github Pages. Use the defaults and it will work.
 #baseurl:     /
 #url:         http://localhost:4000
+#
 #lsi:         false
 
 maruku:
