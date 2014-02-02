@@ -84,7 +84,11 @@
         <!--</script>-->
   </head>
   <body>
-    <h1><a href="{{ site.baseurl }}">{{ site.name }}</a></h1>
+    <div id="nav">
+      <h1 style="display:inline;"><a href="{{ site.url }}">{{ site.name }}</a></h1>
+      <a href="https://github.com/cirosantilli/jekyll-cheat">Fork me on GitHub!</a>
+    </div>
+    <!--<a style="position:absolute; right:0%;" href="https://github.com/cirosantilli/jekyll-cheat">Fork me on Github</a>-->
     {{ content }}
   </body>
 </html>

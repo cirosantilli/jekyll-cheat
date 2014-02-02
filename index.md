@@ -5,13 +5,17 @@ layout: layout0
 
 #TOC
 
-Does not seem to be currently possible server side.
+Does not seem to be currently possible server side on any Markdown engine.
 
 So lets just JS it up:
 
 <ul data-toc></ul>
 
 #Intro
+
+Jekyll is a static site generator that can use many markup interpreting engines, in particular `kramdown`.
+
+The generated site is put under `_site` directory, which should be ignored.
 
 The Liquid template engine is used. It is meant to be client facing safe and fast, and therefore limited by design.
 
@@ -26,6 +30,8 @@ Markup is decided based on file extension.
 You *must* use the triple slash metadata header for markdown to be interpreted on the index file.
 
 The default markdown engine was Maruku, but the project was discontinued. Kramdown is recommended as replacement for Maruku.
+
+Pandoc will not be making it to GH Pages anytime soon: <https://github.com/jekyll/jekyll/issues/1973>
 
 #Pages
 
@@ -101,6 +107,14 @@ def f
 end
 {% endhighlight %}
 
+Kramdown fenced code block TODO: how to syntax highlight (HTML classes not being added).
+
+~~~ ruby
+def f(x)
+  x + 1
+end
+~~~
+
 ##Include
 
 `include includes0.md key="val0"` =
@@ -135,7 +149,7 @@ These are extra filters that Jekyll adds to Liquid:
 
 #Math
 
-The best HTML possibility as of now seems to be to:
+The best possibility without manual pre push pre processing seems to be to:
 
 - `markdown: kramdown` on the `_config.yml`
 - MathJax javascript on the header
@@ -151,3 +165,12 @@ x^2
 $$
 
 $$x^2$$
+
+<https://github.com/jekyll/jekyll/issues/1888> seems solved:
+
+$$
+\begin{align}
+  m &= |r|\\
+  n &= |h|\\
+\end{align}
+$$
