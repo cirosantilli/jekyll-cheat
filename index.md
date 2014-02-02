@@ -3,9 +3,11 @@ title: index title
 layout: layout0
 ---
 
+`site.markdown` = {{ site.markdown  }}
+
 #TOC
 
-Does not seem to be currently possible server side on any Markdown engine.
+Does not seem to be currently possible server side on any Github Pages supported Markdown engine.
 
 So lets just JS it up:
 
@@ -82,10 +84,9 @@ Data in `_config.yml` (not reparsed by `--watch`, must rebuild):
 
 #Image
 
-TODO
+Kramdown:
 
-{:style="width:100px; height:100px;"}
-![image]({{ site.url }}/assets/png.png)
+![image]({{ site.url }}assets/flower.jpg){:width="300"}
 
 #Tags
 
