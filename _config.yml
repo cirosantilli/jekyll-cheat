@@ -16,7 +16,7 @@ pygments:    true
 
 relative_permalinks: true
 
-permalink:     date
+permalink:     /:title
 paginate_path: 'page:num'
 
 # Markdown engine to use:
@@ -41,11 +41,11 @@ excerpt_separator: "\n\n"
 #lsi:         false
 
 maruku:
-  use_tex:    false
-  use_divs:   false
+  use_tex:    true
+  use_divs:   true
   png_engine: blahtex
   png_dir:    images/latex
-  png_url:    /images/latex
+  png_url:    images/latex
   fenced_code_blocks: true
 
 rdiscount:

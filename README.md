@@ -1,4 +1,4 @@
-Jekyll cheat site: <http://cirosantilli.github.io/jekyll-cheat/>
+Jekyll cheat site: <http://www.cirosantilli.com/jekyll-cheat>
 
 Quickstart:
 

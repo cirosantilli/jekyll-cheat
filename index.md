@@ -15,7 +15,7 @@ So lets just JS it up:
 
 #Intro
 
-Jekyll is a static site generator that can use many markup interpreting engines, in particular `kramdown`.
+Jekyll is a static site generator that can use many markup interpreting engines, in particular `kramdown`, which is one of the best.
 
 The generated site is put under `_site` directory, which should be ignored.
 
@@ -33,15 +33,19 @@ You *must* use the triple slash metadata header for markdown to be interpreted o
 
 The default markdown engine was Maruku, but the project was discontinued. Kramdown is recommended as replacement for Maruku.
 
+The default won't be changing too soon for backwards compatibility: <https://github.com/jekyll/jekyll/issues/126#issue/126/comment/125723>. Watch out in particular for the colon `:` on first line bug of Maruku.
+
 Pandoc will not be making it to GH Pages anytime soon: <https://github.com/jekyll/jekyll/issues/1973>
 
 #Pages
 
-[Page 0](page0.html)
-[Page 1](page1.html)
-[dir/Page 0](dir/page0.html)
+[Page 0](page0)
+[Page 1](page1)
+[dir/Page 0](dir/page0)
 
 #Posts
+
+TODO make post URL work on Github pages (not using the site prefix)
 
 {% for post in site.posts %}
 - `post.title` = [{{ post.title }}]({{ post.url }})
@@ -116,16 +120,6 @@ def f(x)
 end
 ~~~
 
-##Include
-
-`include includes0.md key="val0"` =
-
-{% include includes0.md key="val0" %}
-
-`include includes1.md key="val0"` =
-
-{% include includes1.md key="val1" %}
-
 ##Gist
 
 `gist 8749681` =
@@ -136,7 +130,17 @@ end
 
 {% gist 8749681 0.rb %}
 
-##Gist
+##Include
+
+`include includes0.md key="val0"` =
+
+{% include includes0.md key="val0" %}
+
+`include includes1.md key="val0"` =
+
+{% include includes1.md key="val1" %}
+
+##post_url
 
 `post_url 2000-01-01-post0` = {% post_url 2000-01-01-post0 %}
 
