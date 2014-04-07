@@ -1,13 +1,20 @@
 ---
 title: index title
 layout: layout0
+list:
+- a: a0
+  b: b0
+- a: a1
+  b: b2
 ---
 
 `site.markdown` = {{ site.markdown  }}
 
+Also includes Liquid specific information.
+
 #TOC
 
-Does not seem to be currently possible server side on any Github Pages supported Markdown engine.
+Does not seem to be currently possible server side on any GitHub Pages supported Markdown engine.
 
 So lets just JS it up:
 
@@ -23,7 +30,28 @@ The Liquid template engine is used. It is meant to be client facing safe and fas
 
 What Jekyll does is to add many variables automatically to the templates and then possibly compile the result via some markdown format to make Liquid into a blog / website.
 
-The main force behind Jekyll is that Github Pages hosts it for free.
+The main force behind Jekyll is that GitHub Pages hosts it for free.
+
+#Liquid
+
+Set a variable to a string:
+
+{% assign var = 'val' %}
+
+var = {{ var }}
+
+Int:
+
+{% assign var = 1 %}
+
+var = {{ var }}
+
+List: seems not to exist. The best workaround is to use YAML front matter.
+
+{% for x in page.list %}
+    {{ x.a }}
+    {{ x.b }}
+{% endfor  %}
 
 #Markup
 
@@ -35,7 +63,7 @@ The default markdown engine was Maruku, but the project was discontinued. Kramdo
 
 The default won't be changing too soon for backwards compatibility: <https://github.com/jekyll/jekyll/issues/126#issue/126/comment/125723>. Watch out in particular for the colon `:` on first line bug of Maruku.
 
-Pandoc will not be making it to GH Pages anytime soon: <https://github.com/jekyll/jekyll/issues/1973>
+Pandoc will not be making it to GitHub Pages anytime soon: <https://github.com/jekyll/jekyll/issues/1973>
 
 #Pages
 
@@ -43,9 +71,11 @@ Pandoc will not be making it to GH Pages anytime soon: <https://github.com/jekyl
 [Page 1](page1)
 [dir/Page 0](dir/page0)
 
+page.url = {{ page.url }}
+
 #Posts
 
-TODO make post URL work on Github pages (not using the site prefix)
+TODO make post URL work on GitHub pages (not using the site prefix)
 
 {% for post in site.posts %}
 - `post.title` = [{{ post.title }}]({{ post.url }})
@@ -98,7 +128,7 @@ There are extra tags added by Jekyll to Liquid.
 
 ##Code
 
-To have syntax highlighting, you need the corresponding css file included: the highlighter only adds clases.
+To have syntax highlighting, you need the corresponding CSS file included: the highlighter only adds classes.
 
 {% highlight ruby %}
 def f
@@ -157,9 +187,9 @@ These are extra filters that Jekyll adds to Liquid:
 The best possibility without manual pre push pre processing seems to be to:
 
 - `markdown: kramdown` on the `_config.yml`
-- MathJax javascript on the header
+- MathJax Javascript on the header
 
-We am yet to find a server side option (MathML or images), specially one that will run on Github Pages.
+We am yet to find a server side option (MathML or images), specially one that will run on GitHub Pages.
 
 Inline $$x^2$$ math.
 

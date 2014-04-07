@@ -5,3 +5,5 @@ permalink: page1/
 ---
 
 Page 1 content.
+
+page.url = {{ page.url }}
