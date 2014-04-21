@@ -70,6 +70,7 @@ Pandoc will not be making it to GitHub Pages anytime soon: <https://github.com/j
 [Page 0](page0)
 [Page 1](page1)
 [dir/Page 0](dir/page0)
+[submodule/](submodule/)
 
 page.url = {{ page.url }}
 
