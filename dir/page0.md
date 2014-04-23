@@ -4,3 +4,5 @@ permalink: page0/
 ---
 
 dir/Page 0 content.
+
+page.url = {{ page.url }}

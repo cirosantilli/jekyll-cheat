@@ -34,6 +34,8 @@ The main force behind Jekyll is that GitHub Pages hosts it for free.
 
 #Liquid
 
+Good wiki docs: <https://github.com/Shopify/liquid/wiki/Liquid-for-Designers>
+
 Set a variable to a string:
 
 {% assign var = 'val' %}
@@ -46,12 +48,32 @@ Int:
 
 var = {{ var }}
 
-List: seems not to exist. The best workaround is to use YAML front matter.
+List: seems not to have literals.
 
-{% for x in page.list %}
-    {{ x.a }}
-    {{ x.b }}
-{% endfor  %}
+Workarounds:
+
+- YAML front matter:
+
+    {% for x in page.list %}
+        {{ x.a }}
+        {{ x.b }}
+    {% endfor  %}
+
+- split:
+
+    {% assign var = 'a.b' | split:'.' %}
+
+        var[0] = {{ var[0] }}
+        var[1] = {{ var[1] }}
+
+Fails:
+
+{% assign var = ['a', 'b'] %}
+
+    var[0] = {{ var[0] }}
+    var[1] = {{ var[1] }}
+
+##Filters
 
 #Markup
 
