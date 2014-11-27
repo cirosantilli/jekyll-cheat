@@ -210,9 +210,9 @@ These are extra filters that Jekyll adds to Liquid:
 The best possibility without manual pre push pre processing seems to be to:
 
 - `markdown: kramdown` on the `_config.yml`
-- MathJax Javascript on the header
+- MathJax JavaScript on the header
 
-We am yet to find a server side option (MathML or images), specially one that will run on GitHub Pages.
+To our knowledge there is no server side option (MathML or images) that will run on GitHub Pages without local precompiling + adding output files to the Git repo.
 
 Inline $$x^2$$ math.
 
@@ -232,3 +232,32 @@ $$
   n &= |h|\\
 \end{align}
 $$
+
+#Symlinks
+
+Pages only build it:
+
+-   in `.nojekyls` mode
+
+-   the symlink points into the repository: <https://help.github.com/articles/page-build-failed-symlink-does-not-exist-within-your-site-s-repository/>
+
+    The following generate a build error:
+
+    - `..`
+    - `..\0`
+
+    The following don't generate a build error but show 404:
+
+    - `.git`
+    - `.git/config`
+    - `not-a-file`
+
+    The following work:
+
+    - `Gemfile`
+    - `images`
+    - `../images/Gemfile`
+
+#nojekyll
+
+To turn off Jekyll entirely, add a `.nojekyll` file to the top-level: <https://help.github.com/articles/using-jekyll-with-pages/#turning-jekyll-off>
