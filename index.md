@@ -2,17 +2,20 @@
 title: index title
 layout: layout0
 list:
-- a: a0
-  b: b0
-- a: a1
-  b: b2
+  - a: a0
+    b: b0
+  - a: a1
+    b: b1
+list_string:
+  - a
+  - b
 ---
 
 `site.markdown` = {{ site.markdown  }}
 
 Also includes Liquid specific information.
 
-#TOC
+## TOC
 
 Does not seem to be currently possible server side on any GitHub Pages supported Markdown engine.
 
@@ -20,21 +23,31 @@ So lets just JS it up:
 
 <ul data-toc></ul>
 
-#Intro
+## Introduction
 
 Jekyll is a static site generator that can use many markup interpreting engines, in particular `kramdown`, which is one of the best.
 
 The generated site is put under `_site` directory, which should be ignored.
 
-The Liquid template engine is used. It is meant to be client facing safe and fast, and therefore limited by design.
+The Liquid template engine is used in Jekyll.
 
 What Jekyll does is to add many variables automatically to the templates and then possibly compile the result via some markdown format to make Liquid into a blog / website.
 
 The main force behind Jekyll is that GitHub Pages hosts it for free.
 
-#Liquid
+## Liquid
+
+<http://liquidmarkup.org/>
 
 Good wiki docs: <https://github.com/Shopify/liquid/wiki/Liquid-for-Designers>
+
+Meant to be client facing safe and fast, and therefore limited by design for sandboxing.
+
+Liquid was extracted from Shopify.
+
+### Variable
+
+### assign
 
 Set a variable to a string:
 
@@ -48,23 +61,40 @@ Int:
 
 var = {{ var }}
 
+### Filter
+
+Filters are Jekyll's cumbersome implementation of functions.
+
+TODO: possible to apply a filter and take an attribute without assigning to a variable first? 
+
+{{ (page.list | first).b }}
+
+### List
+
+#### List literals
+
 List: seems not to have literals.
 
 Workarounds:
 
-- YAML front matter:
+-   YAML front matter:
 
     {% for x in page.list %}
-        {{ x.a }}
-        {{ x.b }}
+    - {{ x.a }}
+    - {{ x.b }}
     {% endfor  %}
 
-- split:
+    {% for x in page.list_string %}
+    - {{ x }}
+    {% endfor  %}
+
+
+-   split:
 
     {% assign var = 'a.b' | split:'.' %}
 
-        var[0] = {{ var[0] }}
-        var[1] = {{ var[1] }}
+    - `var[0]` = {{ var[0] }}
+    - `var[1]` = {{ var[1] }}
 
 Fails:
 
@@ -73,9 +103,27 @@ Fails:
     var[0] = {{ var[0] }}
     var[1] = {{ var[1] }}
 
-##Filters
+#### first list filter
 
-#Markup
+{{ page.list | first }}
+
+### Hash
+
+### Map
+
+#### Hash literal
+
+TODO seems impossible except for frontmatter?
+
+#### Filter array of hashes
+
+#### where
+
+{% assign var = page.list | where:'a', 'a1' | first %}
+
+{{ var.b }}
+
+## Markup
 
 Markup is decided based on file extension.
 
@@ -87,21 +135,31 @@ The default won't be changing too soon for backwards compatibility: <https://git
 
 Pandoc will not be making it to GitHub Pages anytime soon: <https://github.com/jekyll/jekyll/issues/1973>
 
-#Pages
+## Pages
 
 [Page 0](page0)
 [Page 1](page1)
 [dir/Page 0](dir/page0)
 [submodule/](submodule/)
 
-page.url = {{ page.url }}
+`page.url` = {{ page.url }}
 
-#Posts
+## Site
+
+{% for page in site.pages %}
+-   - `page.url` = {{ page.url }}
+    - `page.title` = {{ page.title }}
+    - `page.permalink` = {{ page.permalink }}
+{% endfor %}
+
+Link to a page with it's title:
+
+## Posts
 
 TODO make post URL work on GitHub pages (not using the site prefix)
 
 {% for post in site.posts %}
-- `post.title` = [{{ post.title }}]({{ post.url }})
+-   `post.title` = [{{ post.title }}]({{ post.url }})
 
     `post.url` = {{ post.url }}
 
@@ -120,11 +178,11 @@ TODO make post URL work on GitHub pages (not using the site prefix)
 
 `site.categories.tag0` = {{ site.categories.category0 | array_to_sentence_string }}
 
-#Layout
+## Layout
 
 There is no current way to specify a default layout, but there is a PR on its way: <https://github.com/jekyll/jekyll/pull/1527>
 
-#Data
+## Data
 
 Works like an YAML text database.
 
@@ -139,17 +197,17 @@ Data in `_config.yml` (not reparsed by `--watch`, must rebuild):
 
 `site.custom-key1` = site.custom-key1
 
-#Image
+## Image
 
 Kramdown:
 
 ![image]({{ site.url }}assets/flower.jpg){:width="300"}
 
-#Tags
+## Tags added by Jekyll
 
 There are extra tags added by Jekyll to Liquid.
 
-##Code
+### Code
 
 To have syntax highlighting, you need the corresponding CSS file included: the highlighter only adds classes.
 
@@ -173,7 +231,7 @@ def f(x)
 end
 ~~~
 
-##Gist
+### Gist
 
 `gist 8749681` =
 
@@ -183,7 +241,7 @@ end
 
 {% gist 8749681 0.rb %}
 
-##Include
+### Include
 
 `include includes0.md key="val0"` =
 
@@ -193,19 +251,27 @@ end
 
 {% include includes1.md key="val1" %}
 
-##post_url
+### post_url
 
 `post_url 2000-01-01-post0` = {% post_url 2000-01-01-post0 %}
 
-#Filters
+### Link to post with it's title shown
 
-These are extra filters that Jekyll adds to Liquid:
+TODO better way?
+
+{% assign perm = 'page0/' %}
+{% assign apage = site.pages | where:'permalink', perm | first %}
+[{{ apage.title }}]({{ perm }})
+
+## Filters added by Jekyll
+
+### date_to_string
 
 `site.time` = {{ site.time }}
 
 `site.time | date_to_string` = {{ site.time | date_to_string }}
 
-#Math
+## Math
 
 The best possibility without manual pre push pre processing seems to be to:
 
@@ -233,7 +299,7 @@ $$
 \end{align}
 $$
 
-#Symlinks
+## Symlinks
 
 Pages only build it:
 
@@ -258,6 +324,6 @@ Pages only build it:
     - `images`
     - `../images/Gemfile`
 
-#nojekyll
+## nojekyll
 
 To turn off Jekyll entirely, add a `.nojekyll` file to the top-level: <https://help.github.com/articles/using-jekyll-with-pages/#turning-jekyll-off>
