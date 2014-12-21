@@ -144,13 +144,16 @@ Pandoc will not be making it to GitHub Pages anytime soon: <https://github.com/j
 
 `page.url` = {{ page.url }}
 
-## Site
-
 {% for page in site.pages %}
 -   - `page.url` = {{ page.url }}
     - `page.title` = {{ page.title }}
     - `page.permalink` = {{ page.permalink }}
+    - `page.path` = {{ page.path }}
 {% endfor %}
+
+## Site
+
+`site.pages` contains an array of all page hashes for the site.
 
 Link to a page with it's title:
 
