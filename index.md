@@ -17,11 +17,10 @@ Also includes Liquid specific information.
 
 ## TOC
 
-Does not seem to be currently possible server side on any GitHub Pages supported Markdown engine.
+Now possible with Kramdown!
 
-So lets just JS it up:
-
-<ul data-toc></ul>
+1. a
+{:toc}
 
 ## Introduction
 
